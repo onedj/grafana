@@ -16,7 +16,7 @@ import (
 	"time"
 
 	"golang.org/x/net/context/ctxhttp"
-	"golang.org/x/oauth2/google"
+	//"golang.org/x/oauth2/google"
 
 	"github.com/grafana/grafana/pkg/api/pluginproxy"
 	"github.com/grafana/grafana/pkg/components/null"
@@ -599,13 +599,13 @@ func (e *StackdriverExecutor) createRequest(ctx context.Context, dsInfo *models.
 }
 
 func (e *StackdriverExecutor) getDefaultProject(ctx context.Context) (string, error) {
-	authenticationType := e.dsInfo.JsonData.Get("authenticationType").MustString(jwtAuthentication)
-	if authenticationType == gceAuthentication {
-		defaultCredentials, err := google.FindDefaultCredentials(ctx, "https://www.googleapis.com/auth/monitoring.read")
-		if err != nil {
-			return "", fmt.Errorf("Failed to retrieve default project from GCE metadata server. error: %v", err)
-		}
-		return defaultCredentials.ProjectID, nil
-	}
+	//authenticationType := e.dsInfo.JsonData.Get("authenticationType").MustString(jwtAuthentication)
+	//if authenticationType == gceAuthentication {
+//		defaultCredentials, err := google.FindDefaultCredentials(ctx, "https://www.googleapis.com/auth/monitoring.read")
+//		if err != nil {
+//			return "", fmt.Errorf("Failed to retrieve default project from GCE metadata server. error: %v", err)
+//		}
+//		return defaultCredentials.ProjectID, nil
+//	}
 	return e.dsInfo.JsonData.Get("defaultProject").MustString(), nil
 }
