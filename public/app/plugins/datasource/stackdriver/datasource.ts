@@ -243,29 +243,30 @@ export default class StackdriverDatasource extends DataSourceApi<StackdriverQuer
   }
 
   async getDefaultProject() {
+    // Shortcut to avoid overwriting with gce default
     return this.projectName;
-    if (this.projectName) {
-      return this.projectName;
-    }
-    try {
-      const { data } = await this.backendSrv.datasourceRequest({
-        url: '/api/tsdb/query',
-        method: 'POST',
-        data: {
-          queries: [
-            {
-              refId: 'ensureDefaultProjectQuery',
-              type: 'ensureDefaultProjectQuery',
-              datasourceId: this.id,
-            },
-          ],
-        },
-      });
-      this.projectName = data.results.ensureDefaultProjectQuery.meta.defaultProject;
-      return this.projectName;
-    } catch (error) {
-      throw this.formatStackdriverError(error);
-    }
+    //if (this.projectName) {
+    //  return this.projectName;
+    //}
+    //try {
+    //  const { data } = await this.backendSrv.datasourceRequest({
+    //    url: '/api/tsdb/query',
+    //    method: 'POST',
+    //    data: {
+    //      queries: [
+    //        {
+    //          refId: 'ensureDefaultProjectQuery',
+    //          type: 'ensureDefaultProjectQuery',
+    //          datasourceId: this.id,
+    //        },
+    //      ],
+    //    },
+    //  });
+    //  this.projectName = data.results.ensureDefaultProjectQuery.meta.defaultProject;
+    //  return this.projectName;
+    //} catch (error) {
+    //  throw this.formatStackdriverError(error);
+    //}
   }
 
   async getMetricTypes(projectName: string): Promise<MetricDescriptor[]> {
