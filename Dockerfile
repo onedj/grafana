@@ -92,6 +92,7 @@ COPY --from=0 /go/src/github.com/grafana/grafana/bin/linux-amd64/grafana-server 
 COPY --from=1 /usr/src/app/public ./public
 COPY --from=1 /usr/src/app/tools ./tools
 COPY tools/phantomjs/render.js ./tools/phantomjs/render.js
+COPY plugins /var/lib/grafana/plugins
 
 EXPOSE 3000
 

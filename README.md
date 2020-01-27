@@ -1,3 +1,16 @@
+----
+Grafana fork for ODJ. This improves the Stackdriver datasource to allow setting the target project
+even in GCE-service account athentication use cases.
+
+Also, the plugin directory holds the plugins we want to make available o the Grafana instances.
+
+To create a new image (for example in sit-odj support project), run
+
+    docker build -t grafana .
+    docker tag grafana eu.gcr.io/sit-odj/grafana:my-tag
+    docker push eu.gcr.io/sit-odj/grafana:my-tag
+
+----
 ![Grafana](docs/logo-horizontal.png)
 
 The open-source platform for monitoring and observability.
