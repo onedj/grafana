@@ -599,13 +599,17 @@ func (e *StackdriverExecutor) createRequest(ctx context.Context, dsInfo *models.
 }
 
 func (e *StackdriverExecutor) getDefaultProject(ctx context.Context) (string, error) {
+	// Regardless of authentication type, we just return the project set in config]
+	// This avoids overwriting any set value with the default. We could use
+	// GetCheck() on e.dsInfo.JsonData.Get("defaultProject") to test and if "" && auth gce then get
+	// the default. 
 	//authenticationType := e.dsInfo.JsonData.Get("authenticationType").MustString(jwtAuthentication)
 	//if authenticationType == gceAuthentication {
-//		defaultCredentials, err := google.FindDefaultCredentials(ctx, "https://www.googleapis.com/auth/monitoring.read")
-//		if err != nil {
-//			return "", fmt.Errorf("Failed to retrieve default project from GCE metadata server. error: %v", err)
-//		}
-//		return defaultCredentials.ProjectID, nil
-//	}
+	//	defaultCredentials, err := google.FindDefaultCredentials(ctx, "https://www.googleapis.com/auth/monitoring.read")
+	//	if err != nil {
+	//		return "", fmt.Errorf("Failed to retrieve default project from GCE metadata server. error: %v", err)
+	//	}
+	//	return defaultCredentials.ProjectID, nil
+	//}
 	return e.dsInfo.JsonData.Get("defaultProject").MustString(), nil
 }
