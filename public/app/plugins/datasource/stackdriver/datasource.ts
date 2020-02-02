@@ -258,7 +258,6 @@ export default class StackdriverDatasource extends DataSourceApi<StackdriverQuer
   }
 
   async getDefaultProject() {
-<<<<<<< HEAD
     // Shortcut to avoid overwriting with gce default
     return this.projectName;
     //if (this.projectName) {
