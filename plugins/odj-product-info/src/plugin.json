@@ -1,0 +1,43 @@
+{
+  "type": "app",
+  "name": "ODJ Product Info App",
+  "id": "odj-product-info-app",
+
+  "info": {
+    "author": {
+      "name": "ODJ Core Team",
+      "url": "https://github.com/onedj/"
+    },
+    "logos": {
+      "small": "img/odj-core-logo.png",
+      "large": "img/odj-core-logo.png"
+    },
+    "version": "%VERSION%",
+    "updated": "%TODAY%"
+  },
+
+  "includes": [
+    {
+      "type": "page",
+      "name": "Root Page (react)",
+      "component": "SamplePage",
+      "xpath": "/a/yourorg-simple-app",
+      "role": "Viewer",
+      "addToNav": true,
+      "defaultNav": true
+    },
+    {
+      "type": "page",
+      "name": "Product Info",
+      "component": "ProductInfoPageCtrl",
+      "role": "Viewer",
+      "defaultNav": false,
+      "addToNav": true
+    }
+  ],
+
+  "dependencies": {
+    "grafanaVersion": "6.6.x",
+    "plugins": []
+  }
+}
