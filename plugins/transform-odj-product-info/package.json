@@ -1,0 +1,23 @@
+{
+  "name": "transform-odj-product-info",
+  "version": "1.0.0",
+  "description": "Transforms ODJ Core Product Info to HTML",
+  "main": "transform.js",
+  "scripts": {
+    "build": "node transform.js ce ratings",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/onedj/grafana.git"
+  },
+  "author": "Niko Schmuck",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/onedj/grafana/issues"
+  },
+  "homepage": "https://github.com/onedj/grafana#readme",
+  "dependencies": {
+    "handlebars": "^4.7.3"
+  }
+}

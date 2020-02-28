@@ -21,7 +21,7 @@
       "type": "page",
       "name": "Root Page (react)",
       "component": "SamplePage",
-      "xpath": "/a/yourorg-simple-app",
+      "xpath": "/a/odj-product-info-app",
       "role": "Viewer",
       "addToNav": true,
       "defaultNav": true
@@ -31,7 +31,6 @@
       "name": "Product Info",
       "component": "ProductInfoPageCtrl",
       "role": "Viewer",
-      "defaultNav": false,
       "addToNav": true
     }
   ],

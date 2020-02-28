@@ -1,0 +1,160 @@
+<html lang="en">
+<head>
+  <title>{{ product.name }}</title>
+  <meta charset="utf-8"/>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+  <meta name="viewport" content="width=device-width"/>
+
+  <link rel="stylesheet" href="http://localhost:3000/public/build/grafana.dark.de7a307fb10ea2121906.css"/>
+  <style type="text/css">
+    .odj h1, .odj h2, .odj h3, .odj h4 {
+      padding-top: 1.5em;
+    }
+
+    .odj table {
+      max-width: 100%;
+    }
+
+    .odj caption {
+      caption-side: top;
+    }
+
+    .odj tr:nth-child(odd) {
+      background-color: #333;
+    }
+
+    .odj th {
+      background-color: #555;
+      color: #fff;
+    }
+
+    .odj th,
+    .odj td {
+      text-align: left;
+      padding: 0.5em 1em;
+    }
+
+  </style>
+</head>
+<body class="odj">
+
+<h3>ODJ Product Information</h3>
+<h1><span class="organization">{{ organization }}</span> {{ product.name }}</h1>
+
+<p>
+  Attributes:
+</p>
+<ul>
+  {{#each product.attributes}}
+    <li>
+      <b>{{this.name}}:</b> {{this.value}}
+    </li>
+  {{/each}}
+</ul>
+
+<table class="data">
+  <caption>Components</caption>
+  <thead>
+  <tr>
+    <th>Name</th>
+    <th>Kind</th>
+    <th>Implements</th>
+    <th>Dependencies</th>
+  </tr>
+  </thead>
+  <tbody>
+  {{#each product.components}}
+    <tr>
+      <td>{{this.name}}</td>
+      <td>{{this.kind}}</td>
+      <td>
+        {{join this.implements}}
+      </td>
+      <td>
+        {{join this.dependencies}}
+      </td>
+    </tr>
+  {{/each}}
+  </tbody>
+</table>
+
+
+<h3>Infrastructure</h3>
+
+{{#each infras}}
+  <h4>Infra: {{ this.name }}</h4>
+
+  <ul>
+    <li>
+      <b>Environment:</b> {{ this.environment }}
+    </li>
+    <li>
+      <b>Monitoring Type:</b> {{ this.monitoring_type }}
+    </li>
+  </ul>
+
+  {{#each this.lots}}
+    <table class="data">
+      <caption>Lot: {{ this.name }}</caption>
+      <tbody>
+      <tr>
+        <th>Region</th>
+        <td colspan="2">{{this.region}}</td>
+      </tr>
+      <tr>
+        <th>Targets</th>
+        <td colspan="2">{{this.targets}}</td>
+      </tr>
+      <tr>
+        <th>Cluster Type</th>
+        <td title="A">{{ this.cluster_type_a }}</td>
+        <td title="B">{{ this.cluster_type_b }}</td>
+      </tr>
+      <tr>
+        <th>IP Range Primary</th>
+        <td colspan="2">{{this.ip_range_primary}}</td>
+      </tr>
+      <tr>
+        <th>IP Range Master</th>
+        <td title="A">{{this.ip_range_master_a}}</td>
+        <td title="B">{{this.ip_range_master_b}}</td>
+      </tr>
+      <tr>
+        <th>IP Range Services</th>
+        <td title="A">{{this.ip_range_services_a}}</td>
+        <td title="B">{{this.ip_range_services_b}}</td>
+      </tr>
+      <tr>
+        <th>IP Range Pods</th>
+        <td title="A">{{this.ip_range_pods_a}}</td>
+        <td title="B">{{this.ip_range_pods_b}}</td>
+      </tr>
+      </tbody>
+    </table>
+  {{/each}}
+
+{{/each}}
+
+
+<h3>Stages</h3>
+
+{{#each stages}}
+  <h4>Infra: {{ this.name }}</h4>
+
+  <ul>
+    <li>
+      <b>Environment:</b> {{ this.environment }}
+    </li>
+    <li>
+      <b>Monitoring Type:</b> {{ this.monitoring_type }}
+    </li>
+  </ul>
+
+  {{#each this.lots}}
+
+  {{/each}}
+{{/each}}
+
+
+</body>
+</html>
