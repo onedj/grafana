@@ -26,7 +26,7 @@ function fetch_infra() {
   curl -s -u $creds $API_HOST/api/orgs/${ORGANISATION}/products/${PRODUCT}/infras/${INFRA} -o $DIR/${INFRA}.json
   # Fetch status
   curl -s -u $creds $API_HOST/api/orgs/${ORGANISATION}/products/${PRODUCT}/infras/${INFRA}/status -o $DIR/${INFRA}.status
-  curl -s -u $creds $API_HOST/api/orgs/${ORGANISATION}/products/${PRODUCT}/infras/${INFRA}/status.svg -o $DIR/${INFRA}.svg
+  #curl -s -u $creds $API_HOST/api/orgs/${ORGANISATION}/products/${PRODUCT}/infras/${INFRA}/status.svg -o $DIR/${INFRA}.svg
   # Details from latest run
   curl -s -L -u $creds $API_HOST/api/orgs/${ORGANISATION}/products/${PRODUCT}/infras/${INFRA}/history/latest -o $DIR/${INFRA}.latest-run
 }
@@ -41,7 +41,7 @@ function fetch_stage() {
   curl -s -u $creds $API_HOST/api/orgs/${ORGANISATION}/products/${PRODUCT}/stages/${STAGE} -o $DIR/${STAGE}.json
   # Fetch status
   curl -s -u $creds $API_HOST/api/orgs/${ORGANISATION}/products/${PRODUCT}/stages/${STAGE}/status -o $DIR/${STAGE}.status
-  curl -s -u $creds $API_HOST/api/orgs/${ORGANISATION}/products/${PRODUCT}/stages/${STAGE}/status.svg -o $DIR/${STAGE}.svg
+  #curl -s -u $creds $API_HOST/api/orgs/${ORGANISATION}/products/${PRODUCT}/stages/${STAGE}/status.svg -o $DIR/${STAGE}.svg
   # Details from latest run
   curl -s -L -u $creds $API_HOST/api/orgs/${ORGANISATION}/products/${PRODUCT}/stages/${STAGE}/history/latest -o $DIR/${STAGE}.latest-run
 }

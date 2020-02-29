@@ -79,10 +79,9 @@
 </table>
 
 
-<h3>Infrastructure</h3>
-
+<!-- Since we filter after environment only one infra can match -->
 {{#each infras}}
-  <h4>Infra: {{ this.name }}</h4>
+  <!-- Infra: {{ this.name }} -->
 
   <ul>
     <li>
@@ -139,20 +138,65 @@
 <h3>Stages</h3>
 
 {{#each stages}}
-  <h4>Infra: {{ this.name }}</h4>
+  <h4>Stage {{ this.name }}</h4>
 
-  <ul>
-    <li>
-      <b>Environment:</b> {{ this.environment }}
-    </li>
-    <li>
-      <b>Monitoring Type:</b> {{ this.monitoring_type }}
-    </li>
-  </ul>
+  <table class="data">
+    <caption>Component Deployments</caption>
+    <thead>
+    <tr>
+      <th>Name</th>
+      <th>Artifact</th>
+      <th>Parameters</th>
+    </tr>
+    </thead>
+    <tbody>
+    {{#each this.componentDeployments}}
+      <tr>
+        <td>{{this.name}}</td>
+        <td>{{this.artifact}}</td>
+        <td>
+          <ul>
+            {{#each this.parameters}}
+              <li>
+                <b>{{this.name}}:</b> {{this.value}}
+              </li>
+            {{/each}}
+          </ul>
+        </td>
+      </tr>
+    {{/each}}
+    </tbody>
+  </table>
 
-  {{#each this.lots}}
 
-  {{/each}}
+  <table class="data">
+    <caption>Dependency Instances</caption>
+    <thead>
+    <tr>
+      <th>Name</th>
+      <th>Parameters</th>
+    </tr>
+    </thead>
+    <tbody>
+    {{#each this.dependencyInstances}}
+      <tr>
+        <td>{{this.name}}</td>
+        <td>
+          <ul>
+            {{#each this.parameters}}
+              <li>
+                <b>{{this.name}}:</b> {{maskerade this.name this.value}}
+              </li>
+            {{/each}}
+          </ul>
+        </td>
+      </tr>
+    {{/each}}
+    </tbody>
+  </table>
+
+
+
 {{/each}}
 
 
