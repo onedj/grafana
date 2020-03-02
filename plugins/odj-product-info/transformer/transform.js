@@ -63,7 +63,7 @@ function getFilenames(basedir) {
     });
 }
 
-
+//var data = JSON.parse(fs.readFileSync("./data/product.json", 'utf8'));
 const product = require(`${BASE_DIR}/${PRODUCT_NAME}.json`);
 
 // Loop over infras
@@ -78,7 +78,6 @@ const stages = stageNames
   .map(name => require(`${BASE_DIR}/stages/${name}.json`))
   .filter(stage => stage.environment === ENV_NAME);
 
-//var data = JSON.parse(fs.readFileSync("./data/strings.json", 'utf8'));
 
 let result = render('./templates/product.html.hbs',
   {organization: ORG_NAME, product: product, infras: infras, stages: stages});

@@ -12,8 +12,8 @@
       "small": "img/odj-core-logo.png",
       "large": "img/odj-core-logo.png"
     },
-    "version": "%VERSION%",
-    "updated": "%TODAY%"
+    "version": "1.0.0",
+    "updated": "2020-03-02"
   },
 
   "includes": [

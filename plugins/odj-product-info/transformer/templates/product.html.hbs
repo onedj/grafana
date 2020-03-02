@@ -5,7 +5,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
   <meta name="viewport" content="width=device-width"/>
 
-  <link rel="stylesheet" href="http://localhost:3000/public/build/grafana.dark.de7a307fb10ea2121906.css"/>
+  <!--link rel="stylesheet" href="http://localhost:3000/public/build/grafana.dark.de7a307fb10ea2121906.css"/-->
   <style type="text/css">
     .odj h1, .odj h2, .odj h3, .odj h4 {
       padding-top: 1.5em;
@@ -13,6 +13,7 @@
 
     .odj table {
       max-width: 100%;
+      margin-top: 1em;
     }
 
     .odj caption {
@@ -34,11 +35,20 @@
       padding: 0.5em 1em;
     }
 
+    .odj ul {
+      margin-left: 1em;
+      padding-left: 1em;
+    }
+
+    .odj li {
+    }
+
   </style>
 </head>
-<body class="odj">
+<body>
+<div class="odj">
 
-<h3>ODJ Product Information</h3>
+<!--h3>ODJ Product Information</h3-->
 <h1><span class="organization">{{ organization }}</span> {{ product.name }}</h1>
 
 <p>
@@ -83,14 +93,10 @@
 {{#each infras}}
   <!-- Infra: {{ this.name }} -->
 
-  <ul>
-    <li>
-      <b>Environment:</b> {{ this.environment }}
-    </li>
-    <li>
-      <b>Monitoring Type:</b> {{ this.monitoring_type }}
-    </li>
-  </ul>
+  <p>
+    <b>Environment:</b> {{ this.environment }}
+    <b>Monitoring Type:</b> {{ this.monitoring_type }}
+  </p>
 
   {{#each this.lots}}
     <table class="data">
@@ -195,10 +201,8 @@
     </tbody>
   </table>
 
-
-
 {{/each}}
 
-
+</div>
 </body>
 </html>

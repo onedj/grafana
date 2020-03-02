@@ -1,6 +1,6 @@
 import { PluginMeta } from '@grafana/data';
 
-export class ExampleConfigCtrl {
+export class ProductInfoConfigCtrl {
   static templateUrl = 'pages/config.html';
 
   appEditCtrl: any;
@@ -21,7 +21,7 @@ export class ExampleConfigCtrl {
       appModel.jsonData = {};
     }
 
-    console.log('ExampleConfigCtrl', this);
+    console.log('ProductInfoConfigCtrl', this);
   }
 
   postUpdate() {
