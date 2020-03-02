@@ -4,7 +4,7 @@
   "description": "Transforms ODJ Core Product Info to HTML",
   "main": "transform.js",
   "scripts": {
-    "build": "node transform.js ce ratings",
+    "build": "node transform.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {

@@ -2,10 +2,11 @@
 const fs = require('fs');
 const Handlebars = require("handlebars");
 
+const args = process.argv.slice(2);  // cut-off node path and program args
 
-const ORG_NAME = 'ce';
-const PRODUCT_NAME = 'ratings';
-const ENV_NAME = 'live';
+const ORG_NAME = args[0];     // ie. ce
+const PRODUCT_NAME = args[1]; // ie. ratings
+const ENV_NAME = args[2];     // ie. live resp. work
 
 const BASE_DIR = `./data/snapshot/products/${ORG_NAME}/${PRODUCT_NAME}`;
 
@@ -20,14 +21,15 @@ join = function (array, separator) {
   separator = isString(separator) ? separator : ', ';
   return array.join(separator);
 };
-Handlebars.registerHelper("join", join);
+Handlebars.registerHelper("helper_join", join);
 
-maskerade = function (key, val) {
-  if (['password', 'key', 'tlsapikey'].includes(key)) {
+masquerade = function (key, val) {
+  if (['password', 'key', 'token', 'tlsapikey'].includes(key.toLowerCase())) {  // FIXME: extend to cover more key names
 
     const maskChar = '*';
     const unmaskedLength = 5;
     const maskFromStart = true;
+    const maxCharsFromEnd = 12;
 
     const maskStart = maskFromStart ? 0 : Math.max(0, unmaskedLength);
     const maskEnd = maskFromStart ? Math.max(0, val.length - unmaskedLength) : val.length;
@@ -41,12 +43,18 @@ maskerade = function (key, val) {
         }
       })
       .join("");
-    return h.substr(-12,12);
+    return h.substr(-maxCharsFromEnd, maxCharsFromEnd);
   } else {
     return val;
   }
 };
-Handlebars.registerHelper("maskerade", maskerade);
+Handlebars.registerHelper("helper_mask", masquerade);
+
+now = function () {
+  let [date, time] = new Date().toISOString().split('T');
+  return `${date} ${time}`
+};
+Handlebars.registerHelper("helper_now", now);
 
 
 function render(filename, data) {

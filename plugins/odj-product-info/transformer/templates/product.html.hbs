@@ -48,160 +48,164 @@
 <body>
 <div class="odj">
 
-<!--h3>ODJ Product Information</h3-->
-<h1><span class="organization">{{ organization }}</span> {{ product.name }}</h1>
-
-<p>
-  Attributes:
-</p>
-<ul>
-  {{#each product.attributes}}
-    <li>
-      <b>{{this.name}}:</b> {{this.value}}
-    </li>
-  {{/each}}
-</ul>
-
-<table class="data">
-  <caption>Components</caption>
-  <thead>
-  <tr>
-    <th>Name</th>
-    <th>Kind</th>
-    <th>Implements</th>
-    <th>Dependencies</th>
-  </tr>
-  </thead>
-  <tbody>
-  {{#each product.components}}
-    <tr>
-      <td>{{this.name}}</td>
-      <td>{{this.kind}}</td>
-      <td>
-        {{join this.implements}}
-      </td>
-      <td>
-        {{join this.dependencies}}
-      </td>
-    </tr>
-  {{/each}}
-  </tbody>
-</table>
-
-
-<!-- Since we filter after environment only one infra can match -->
-{{#each infras}}
-  <!-- Infra: {{ this.name }} -->
+  <!--h3>ODJ Product Information</h3-->
+  <h1><span class="organization">{{organization}}</span> {{product.name}}</h1>
 
   <p>
-    <b>Environment:</b> {{ this.environment }}
-    <b>Monitoring Type:</b> {{ this.monitoring_type }}
+    Attributes:
   </p>
+  <ul>
+    {{#each product.attributes}}
+      <li>
+        <b>{{this.name}}:</b> {{this.value}}
+      </li>
+    {{/each}}
+  </ul>
 
-  {{#each this.lots}}
-    <table class="data">
-      <caption>Lot: {{ this.name }}</caption>
-      <tbody>
+  <table class="data">
+    <caption>Components</caption>
+    <thead>
+    <tr>
+      <th>Name</th>
+      <th>Kind</th>
+      <th>Implements</th>
+      <th>Dependencies</th>
+    </tr>
+    </thead>
+    <tbody>
+    {{#each product.components}}
       <tr>
-        <th>Region</th>
-        <td colspan="2">{{this.region}}</td>
+        <td>{{this.name}}</td>
+        <td>{{this.kind}}</td>
+        <td>
+          {{helper_join this.implements}}
+        </td>
+        <td>
+          {{helper_join this.dependencies}}
+        </td>
       </tr>
-      <tr>
-        <th>Targets</th>
-        <td colspan="2">{{this.targets}}</td>
-      </tr>
-      <tr>
-        <th>Cluster Type</th>
-        <td title="A">{{ this.cluster_type_a }}</td>
-        <td title="B">{{ this.cluster_type_b }}</td>
-      </tr>
-      <tr>
-        <th>IP Range Primary</th>
-        <td colspan="2">{{this.ip_range_primary}}</td>
-      </tr>
-      <tr>
-        <th>IP Range Master</th>
-        <td title="A">{{this.ip_range_master_a}}</td>
-        <td title="B">{{this.ip_range_master_b}}</td>
-      </tr>
-      <tr>
-        <th>IP Range Services</th>
-        <td title="A">{{this.ip_range_services_a}}</td>
-        <td title="B">{{this.ip_range_services_b}}</td>
-      </tr>
-      <tr>
-        <th>IP Range Pods</th>
-        <td title="A">{{this.ip_range_pods_a}}</td>
-        <td title="B">{{this.ip_range_pods_b}}</td>
-      </tr>
-      </tbody>
-    </table>
+    {{/each}}
+    </tbody>
+  </table>
+
+
+  <!-- Since we filter after environment only one infra can match -->
+  {{#each infras}}
+    <!-- Infra: {{this.name}} -->
+
+    <p>
+      <b>Environment:</b> {{this.environment}}
+      <b>Monitoring Type:</b> {{this.monitoring_type}}
+    </p>
+
+    {{#each this.lots}}
+      <table class="data">
+        <caption>Lot: {{this.name}}</caption>
+        <tbody>
+        <tr>
+          <th>Region</th>
+          <td colspan="2">{{this.region}}</td>
+        </tr>
+        <tr>
+          <th>Targets</th>
+          <td colspan="2">{{this.targets}}</td>
+        </tr>
+        <tr>
+          <th>Cluster Type</th>
+          <td title="A">{{this.cluster_type_a}}</td>
+          <td title="B">{{this.cluster_type_b}}</td>
+        </tr>
+        <tr>
+          <th>IP Range Primary</th>
+          <td colspan="2">{{this.ip_range_primary}}</td>
+        </tr>
+        <tr>
+          <th>IP Range Master</th>
+          <td title="A">{{this.ip_range_master_a}}</td>
+          <td title="B">{{this.ip_range_master_b}}</td>
+        </tr>
+        <tr>
+          <th>IP Range Services</th>
+          <td title="A">{{this.ip_range_services_a}}</td>
+          <td title="B">{{this.ip_range_services_b}}</td>
+        </tr>
+        <tr>
+          <th>IP Range Pods</th>
+          <td title="A">{{this.ip_range_pods_a}}</td>
+          <td title="B">{{this.ip_range_pods_b}}</td>
+        </tr>
+        </tbody>
+      </table>
+    {{/each}}
+
   {{/each}}
 
-{{/each}}
 
+  <h3>Stages</h3>
 
-<h3>Stages</h3>
+  {{#each stages}}
+    <h4>Stage {{this.name}}</h4>
 
-{{#each stages}}
-  <h4>Stage {{ this.name }}</h4>
-
-  <table class="data">
-    <caption>Component Deployments</caption>
-    <thead>
-    <tr>
-      <th>Name</th>
-      <th>Artifact</th>
-      <th>Parameters</th>
-    </tr>
-    </thead>
-    <tbody>
-    {{#each this.componentDeployments}}
+    <table class="data">
+      <caption>Component Deployments</caption>
+      <thead>
       <tr>
-        <td>{{this.name}}</td>
-        <td>{{this.artifact}}</td>
-        <td>
-          <ul>
-            {{#each this.parameters}}
-              <li>
-                <b>{{this.name}}:</b> {{this.value}}
-              </li>
-            {{/each}}
-          </ul>
-        </td>
+        <th>Name</th>
+        <th>Artifact</th>
+        <th>Parameters</th>
       </tr>
-    {{/each}}
-    </tbody>
-  </table>
+      </thead>
+      <tbody>
+      {{#each this.componentDeployments}}
+        <tr>
+          <td>{{this.name}}</td>
+          <td>{{this.artifact}}</td>
+          <td>
+            <ul>
+              {{#each this.parameters}}
+                <li>
+                  <b>{{this.name}}:</b> {{this.value}}
+                </li>
+              {{/each}}
+            </ul>
+          </td>
+        </tr>
+      {{/each}}
+      </tbody>
+    </table>
 
 
-  <table class="data">
-    <caption>Dependency Instances</caption>
-    <thead>
-    <tr>
-      <th>Name</th>
-      <th>Parameters</th>
-    </tr>
-    </thead>
-    <tbody>
-    {{#each this.dependencyInstances}}
+    <table class="data">
+      <caption>Dependency Instances</caption>
+      <thead>
       <tr>
-        <td>{{this.name}}</td>
-        <td>
-          <ul>
-            {{#each this.parameters}}
-              <li>
-                <b>{{this.name}}:</b> {{maskerade this.name this.value}}
-              </li>
-            {{/each}}
-          </ul>
-        </td>
+        <th>Name</th>
+        <th>Parameters</th>
       </tr>
-    {{/each}}
-    </tbody>
-  </table>
+      </thead>
+      <tbody>
+      {{#each this.dependencyInstances}}
+        <tr>
+          <td>{{this.name}}</td>
+          <td>
+            <ul>
+              {{#each this.parameters}}
+                <li>
+                  <b>{{this.name}}:</b> {{helper_mask this.name this.value}}
+                </li>
+              {{/each}}
+            </ul>
+          </td>
+        </tr>
+      {{/each}}
+      </tbody>
+    </table>
 
-{{/each}}
+  {{/each}}
+
+  <p>
+    Generated at {{helper_now}}
+  </p>
 
 </div>
 </body>
