@@ -25,7 +25,7 @@ export class ExampleRootPage<ExampleAppSettings> extends PureComponent<Props, St
   componentDidMount() {
     this.updateNav();
 
-    fetch('http://core.odjint.schwarz/api/orgs/ce/products/ratings', {
+    fetch('http://localhost:8080/api/orgs/sit/products/test', {
       headers: {
         Authorization: 'Basic b2RqY29yZTo5dnd2YXltRXdBZktCbXlh',
       },
