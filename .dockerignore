@@ -16,3 +16,6 @@ node_modules
 /tmp
 *.yml
 *.md
+
+plugins/odj-product-info/node_modules/
+plugins/simple-app-plugin/node_modules/
